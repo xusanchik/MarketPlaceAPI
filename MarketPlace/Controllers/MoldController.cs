@@ -31,7 +31,7 @@ namespace MarketPlace.Controllers
             return Ok(get);
         }
         [HttpPut("{id}")]
-        public virtual async Task<IActionResult> Put(int id, TEntity entity)
+        public virtual async Task<IActionResult> Put([FromQuery] int id, TEntity entity)
         {
             if (id != entity.Id)
                 return BadRequest();
@@ -39,13 +39,13 @@ namespace MarketPlace.Controllers
             return NoContent();
         }
         [HttpPost]
-        public virtual async Task<ActionResult<TEntity>> Post(TEntity entity)
+        public virtual async Task<ActionResult<TEntity>> Post([FromQuery]TEntity entity)
         {
             await _genericRepasitory.Create(entity);
             return Created("", entity);
         }
         [HttpDelete("{id}")]
-        public virtual async Task<ActionResult<TEntity>> Delete(int id)
+        public virtual async Task<ActionResult<TEntity>> Delete([FromQuery] int id)
         {
             var movie = await _genericRepasitory.Delete(id);
             return movie;
