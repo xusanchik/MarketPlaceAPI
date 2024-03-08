@@ -18,6 +18,7 @@ using FluentValidation;
 using MarketPlace.Dto_s;
 using MarketPlace.FluentValidation;
 using MarketPlace.Interfaces;
+using MarketPlace.AutoMapperConfguration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -94,8 +95,9 @@ builder.Services.AddScoped<AdressRepository>();
 builder.Services.AddScoped<IFoodService, FoodService>();
 builder.Services.AddScoped<FoodMarketRepository>();
 builder.Services.AddScoped<FoodRepository>();
-builder.Services.AddScoped<PaymentRrpository>();    
+builder.Services.AddScoped<PaymentRrpository>();
 
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
